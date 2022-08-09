@@ -5,7 +5,10 @@ Made by me as a beginner so your feedback will be very valuable and can help me 
 A Lua Script made for [Kiddion's Modest External Menu](https://www.unknowncheats.me/forum/grand-theft-auto-v/497052-kiddions-modest-external-menu-thread-3-a.html).
 
 ## Download and Install
-Download the file [Heist-Assistant.lua](https://github.com/boncabee/Heist-Assistant/releases) then put into `modest-menu_v0.9.4\scripts\ Here`. If your Modest Menu already opened you need to reload script by `Menu Settings > Reload Script`. All done, go to `Scripts > Heist Assistant` to use the script.
+Download the file `HeistAssistant.lua` then put into `modest-menu_v0.9.4\scripts\ Here`. If your Modest Menu already opened you need to reload script by `Menu Settings > Reload Scripts`. All done, go to `Scripts > Heist Assistant` to use the script.
+
+## Changelog
+Read in [Releases](https://github.com/boncabee/Heist-Assistant/releases)
 
 ## Credits
 [Kiddion](https://www.unknowncheats.me/forum/members/1861563.html) for made kiddion's modest external menu.
