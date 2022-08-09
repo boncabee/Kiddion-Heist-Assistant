@@ -1,8 +1,8 @@
 --[[
 
-	Heist Assistant v0.1
-	Made by Boncabee: !BONCABE#0801
-	Script for Kiddion's Modest External Menu v0.9.4: https://www.unknowncheats.me/forum/grand-theft-auto-v/497052-kiddions-modest-external-menu-thread-3-a.html
+	Heist Assistant v0.2
+	Made by Boncabee: https://github.com/boncabee
+	Script for Kiddion's Modest External Menu: https://www.unknowncheats.me/forum/grand-theft-auto-v/497052-kiddions-modest-external-menu-thread-3-a.html
 	Thanks to Roy007 for make me interesting with lua, because his code is easy to understand then i can made this script
 	Heist Assistant is based from ScriptStash by Roy007 & inspired from Stand Heist Control by IceDoomfist
 	
@@ -10,6 +10,14 @@
 	Most of the scripts were created by other people, some were modified to fit my needs, some are original
 	All credits go to the original authors, if something is missed please notify me
 
+]]--
+
+--[[ Version
+
+	HA: v0.2
+	Kiddion's: v0.9.4
+	GTAO: v1.61
+	
 ]]--
 
 local GlO=262145				--v1.61 Global offset
@@ -37,10 +45,18 @@ local HS0KP=53991				--v1.61 Casino Keypad(local)
 local HS0VT=10082+37			--v1.61 Casino Vault Total(local)
 local HS0VS=10082+7				--v1.61 Casino Vault Stat(local)
 
+-- The Doomsday Heist
+local DDCO=1962546+812+50		--v1.61 Doomsday Player Cut offset
+local Beam=1398					--v1.61 D'Day Act III Beam puzzle
+local Nodes=1537				--v1.61 D'Day Act I Server Nodes puzzle
+
+-- Apartment Heist
+local VLSI=11731+24				--v1.61 Apartment Fleeca Circuit Breaker
+
 local function mpx() return stats.get_int("MPPLY_LAST_MP_CHAR") end
 
 local ha=menu.add_submenu("Heist Assistant")
-ha:add_action("                  Heist Assistant v0.1", function() end)
+ha:add_action("                  Heist Assistant v0.2", function() end)
 
 local hs=script("fm_mission_controller_2020")
 
@@ -92,6 +108,7 @@ local hs=script("fm_mission_controller_2020")
 			stats.set_int("MP"..mpx().."_H4_MISSIONS", 8191)
 		end)
 		
+		-- can someone make this preset work with 100% cut for all members, with add_toggle?
 		-- local hacpsp2=hacpsp:add_action("Quick Preset [1-4P]", function()
 			-- -- stats.set_int("MP"..mpx().."_H4CNF_BS_GEN", 262143)
 			-- -- stats.set_int("MP"..mpx().."_H4CNF_BS_ENTR", 63)
@@ -415,6 +432,7 @@ local hs=script("fm_mission_controller_2020")
 			end)
 		--
 		
+		-- can someone make a preset work with 100% cut for all members, with add_toggle?
 		-- local hadcsp2=hadcsp:add_action("Quick Preset Aggressive-Gold [1-4P]", function() end)
 			-- havent idea im noob, help me
 		-- --
@@ -606,14 +624,98 @@ local hs=script("fm_mission_controller_2020")
 
 	local had=ha:add_submenu("Doomsday Heist", function() end)
 	
-	local hadsp=had:add_submenu("Setup Preset", function() end)			
-		-- local hadsp1=hadsp:add_action("The Data Breaches ACT I", function() end)
-		-- local hadsp2=hadsp:add_action("The Bogdan Problem ACT II", function() end)
-		-- local hadsp2=hadsp:add_action("The Doomsday Scenario ACT III", function() end)
+	local hadsp=had:add_submenu("Setup Preset", function() end)
+	
+		local hadfh=hadsp:add_submenu("Final Heist", function() end)
+			local hadfh1=hadfh:add_action("The Data Breaches ACT I", function()
+			stats.set_int("MP"..mpx().."_GANGOPS_FLOW_MISSION_PROG", 503)
+			stats.set_int("MP"..mpx().."_GANGOPS_HEIST_STATUS", -229383)
+			stats.set_int("MP"..mpx().."_GANGOPS_FLOW_NotifyS", 1557) end)
+			
+			local hadfh2=hadfh:add_action("The Bogdan Problem ACT II", function()
+			stats.set_int("MP"..mpx().."_GANGOPS_FLOW_MISSION_PROG", 240)
+			stats.set_int("MP"..mpx().."_GANGOPS_HEIST_STATUS", -229378)
+			stats.set_int("MP"..mpx().."_GANGOPS_FLOW_NotifyS", 1557) end)
+			
+			local hadfh3=hadfh:add_action("The Doomsday Scenario ACT III", function()
+			stats.set_int("MP"..mpx().."_GANGOPS_FLOW_MISSION_PROG", 16368)
+			stats.set_int("MP"..mpx().."_GANGOPS_HEIST_STATUS", -229380)
+			stats.set_int("MP"..mpx().."_GANGOPS_FLOW_NotifyS", 1557) end)
+		--
+		
+		local hadp=hadsp:add_action("Complete Preparation [only]", function() 
+			stats.set_int("MP"..mpx().."_GANGOPS_FM_MISSION_PROG", -1)  end)	
+		--
+		
+		local hadr=hadsp:add_action("Reset Heist To Default", function() 
+			stats.set_int("MP"..mpx().."_GANGOPS_FLOW_MISSION_PROG", 240)  
+			stats.set_int("MP"..mpx().."_GANGOPS_HEIST_STATUS", 0)  
+			stats.set_int("MP"..mpx().."_GANGOPS_FLOW_NotifyS", 1557) end)	
+		--
+
 	--
 	
-	local hadhh=had:add_submenu("Heist Helper", function()
-	end)
+	local hadhh=had:add_submenu("Heist Helper", function() end)
+		hadhh:add_action("Bypass Server Nodes Hack [ACT I]", function()
+		if hs:is_active() then if hs:get_int(Nodes)>-1 and hs:get_int(Nodes)<100 then hs:set_int(Nodes, 2) end end end)
+		hadhh:add_action("Bypass Beam Puzzle Hack [ACT III]", function()
+		if hs:is_active() then if hs:get_int(Beam)>-1 and hs:get_int(Beam)<100 then hs:set_int(Beam, 3) end end end)
+		hadhh:add_action("Remove CCTV", function() menu.remove_cctvs() end)
+		hadhh:add_action("Kill All NPCs", function() menu.kill_all_npcs() end)
+	--
+	
+	local hadm=had:add_submenu("Misc", function() end)
+		local hadm1=hadm:add_action("Unlock All Doomsday Heist", function()
+		stats.set_int("MP"..mpx().."_GANGOPS_HEIST_STATUS", -1)
+		stats.set_int("MP"..mpx().."_GANGOPS_HEIST_STATUS", -229384) end)
+		
+		local hadm2=hadm:add_action("Unlock Heist Reward", function()
+		stats.set_int("MP"..mpx().."_GANGOPS_FM_MISSION_PROG", -1)
+		stats.set_int("MP"..mpx().."_GANGOPS_ALLINORDER", 100)
+		stats.set_int("MP"..mpx().."_GANGOPS_LOYALTY", 100)
+		stats.set_int("MP"..mpx().."_GANGOPS_CRIMMASMD", 100)
+		stats.set_int("MP"..mpx().."_GANGOPS_LOYALTY2", 100)
+		stats.set_int("MP"..mpx().."_GANGOPS_LOYALTY3", 100)
+		stats.set_int("MP"..mpx().."_GANGOPS_CRIMMASMD2", 100)
+		stats.set_int("MP"..mpx().."_GANGOPS_CRIMMASMD3", 100)
+		stats.set_int("MP"..mpx().."_GANGOPS_SUPPORT", 100)
+		stats.set_int("MP"..mpx().."_CR_GANGOP_MORGUE", 10)
+		stats.set_int("MP"..mpx().."_CR_GANGOP_DELUXO", 10)
+		stats.set_int("MP"..mpx().."_CR_GANGOP_SERVERFARM", 10)
+		stats.set_int("MP"..mpx().."_CR_GANGOP_IAABASE_FIN", 10)
+		stats.set_int("MP"..mpx().."_CR_GANGOP_STEALOSPREY", 10)
+		stats.set_int("MP"..mpx().."_CR_GANGOP_FOUNDRY", 10)
+		stats.set_int("MP"..mpx().."_CR_GANGOP_RIOTVAN", 10)
+		stats.set_int("MP"..mpx().."_CR_GANGOP_SUBMARINECAR", 10)
+		stats.set_int("MP"..mpx().."_CR_GANGOP_SUBMARINE_FIN", 10)
+		stats.set_int("MP"..mpx().."_CR_GANGOP_PREDATOR", 10)
+		stats.set_int("MP"..mpx().."_CR_GANGOP_BMLAUNCHER", 10)
+		stats.set_int("MP"..mpx().."_CR_GANGOP_BCCUSTOM", 10)
+		stats.set_int("MP"..mpx().."_CR_GANGOP_STEALTHTANKS", 10)
+		stats.set_int("MP"..mpx().."_CR_GANGOP_SPYPLANE", 10)
+		stats.set_int("MP"..mpx().."_CR_GANGOP_FINALE", 10)
+		stats.set_int("MP"..mpx().."_CR_GANGOP_FINALE_P2", 10)
+		stats.set_int("MP"..mpx().."_CR_GANGOP_FINALE_P3", 10)
+		stats.set_bool("MP"..mpx().."_AWD_GANGOPS_SUBMARINE", true)
+		stats.set_bool("MP"..mpx().."_AWD_GANGOPS_MISSILE", true)
+		stats.set_bool("MP"..mpx().."_AWD_GANGOPS_IAA", true)
+		stats.set_bool("MP"..mpx().."_AWD_GANGOPS_ALLINORDER", true)
+		stats.set_bool("MP"..mpx().."_AWD_GANGOPS_LOYALTY", true)
+		stats.set_bool("MP"..mpx().."_AWD_GANGOPS_LOYALTY2", true)
+		stats.set_bool("MP"..mpx().."_AWD_GANGOPS_LOYALTY3", true)
+		stats.set_bool("MP"..mpx().."_AWD_GANGOPS_CRIMMASMD", true)
+		stats.set_bool("MP"..mpx().."_AWD_GANGOPS_CRIMMASMD2", true)
+		stats.set_bool("MP"..mpx().."_AWD_GANGOPS_CRIMMASMD3", true) end)
+	--
+	
+---
+
+--- Apartment Heist
+
+	-- local haa=ha:add_submenu("Apartment Heist", function() end)
+		-- haa:add_action("Fleeca Circut Breaker", function()
+		-- if hs:is_active() then if hs:get_int(VLSI)>-1 and hs:get_int(VLSI)<100 then hs:set_int(VLSI, 7) end end end)
+	--
 	
 ---
 
