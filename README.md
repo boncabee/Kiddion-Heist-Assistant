@@ -1,7 +1,7 @@
 # Heist Assistant
 
 ## Introduction
-Heist Assistant focused helping people to make money with playing easy heist in GTA Online.
+Heist Assistant focused helping people to make money with playing easy heist in GTA Online v1.61.
 A Lua Script made for [Kiddion's Modest External Menu](https://www.unknowncheats.me/forum/grand-theft-auto-v/497052-kiddions-modest-external-menu-thread-3-a.html).
 
 ## Installation
