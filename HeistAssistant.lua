@@ -1,6 +1,6 @@
 --[[
 
-	Heist Assistant v0.2
+	Heist Assistant v0.3
 	Made by Boncabee: https://github.com/boncabee
 	Script for Kiddion's Modest External Menu: https://www.unknowncheats.me/forum/grand-theft-auto-v/497052-kiddions-modest-external-menu-thread-3-a.html
 	Thanks to Roy007 for make me interesting with lua, because his code is easy to understand then i can made this script
@@ -14,7 +14,7 @@
 
 --[[ Version
 
-	HA: v0.2
+	HA: v0.3
 	Kiddion's: v0.9.4
 	GTAO: v1.61
 	
@@ -34,6 +34,8 @@ local HSCF=23385				--v1.61 Cayo Clone Fingerprint(local)
 local HSCG=28736+3				--v1.61 Cayo Cut Glass(local)
 local HSCS=28735				--v1.61 Cayo CutterStage(local)
 local HSBC=28736				--v1.61 Cayo BitCheck(local)
+local HSIF1=38397				--v1.61 Cayo InstantFinish(local) Local_38396.f_1375[1]
+local HSIF2=39772				--v1.61 Cayo InstantFinish(local) Local_38396.f_1
 
 -- Diamond Casino Heist
 local CrVO=2725439				--v1.61 Casino Create Vehicle offset
@@ -49,16 +51,20 @@ local HS0VS=10082+7				--v1.61 Casino Vault Stat(local)
 local DDCO=1962546+812+50		--v1.61 Doomsday Player Cut offset
 local Beam=1398					--v1.61 D'Day Act III Beam puzzle
 local Nodes=1537				--v1.61 D'Day Act I Server Nodes puzzle
+local HSIFD1=19679				--v1.61 D'Day InstantFinish(local)
+local HSIFD2=28298+1			--v1.61 D'Day InstantFinish(local)
+local HSIFD3=31554+69			--v1.61 D'Day InstantFinish(local)
 
 -- Apartment Heist
 local VLSI=11731+24				--v1.61 Apartment Fleeca Circuit Breaker
 
+
+require_game_build(2699) -- GTAO v1.61
+local hs=script("fm_mission_controller_2020")
 local function mpx() return stats.get_int("MPPLY_LAST_MP_CHAR") end
 
 local ha=menu.add_submenu("Heist Assistant")
-ha:add_action("                  Heist Assistant v0.2", function() end)
-
-local hs=script("fm_mission_controller_2020")
+ha:add_action("                  Heist Assistant v0.3", function() end)
 
 --- Cayo Perico Heist			
 
@@ -76,7 +82,7 @@ local hs=script("fm_mission_controller_2020")
 	--
 	
 	local hacpsp=hacp:add_submenu("Setup Preset", function() end)			
-		local hacpsp1=hacpsp:add_action("Standart Preset [Panther]", function()
+		local hacpsp1=hacpsp:add_action("Hard Panther", function()
 			stats.set_int("MP"..mpx().."_H4CNF_BS_GEN", 122879)
 			stats.set_int("MP"..mpx().."_H4CNF_WEAPONS", 2)
 			stats.set_int("MP"..mpx().."_H4CNF_TARGET", 5)
@@ -104,56 +110,49 @@ local hs=script("fm_mission_controller_2020")
 			stats.set_int("MP"..mpx().."_H4LOOT_PAINT_SCOPED", 127)
 			stats.set_int("MP"..mpx().."_H4LOOT_GOLD_V", 585151)
 			stats.set_int("MP"..mpx().."_H4LOOT_PAINT_V", 438863)
-			stats.set_int("MP"..mpx().."_H4_PROGRESS", 124271)
+			stats.set_int("MP"..mpx().."_H4_PROGRESS", 131055)
 			stats.set_int("MP"..mpx().."_H4_MISSIONS", 8191)
 		end)
 		
-		-- can someone make this preset work with 100% cut for all members, with add_toggle?
-		-- local hacpsp2=hacpsp:add_action("Quick Preset [1-4P]", function()
-			-- -- stats.set_int("MP"..mpx().."_H4CNF_BS_GEN", 262143)
-			-- -- stats.set_int("MP"..mpx().."_H4CNF_BS_ENTR", 63)
-			-- -- stats.set_int("MP"..mpx().."_H4CNF_BS_ABIL", 63)
-			-- -- stats.set_int("MP"..mpx().."_H4CNF_WEP_DISRP", 3)
-			-- -- stats.set_int("MP"..mpx().."_H4CNF_ARM_DISRP", 3)
-			-- -- stats.set_int("MP"..mpx().."_H4CNF_HEL_DISRP", 3)
-			-- -- stats.set_int("MP"..mpx().."_H4CNF_BOLTCUT", 4424)
-			-- -- stats.set_int("MP"..mpx().."_H4CNF_UNIFORM", 5256)
-			-- -- stats.set_int("MP"..mpx().."_H4CNF_GRAPPEL", 5156)
-			-- -- stats.set_int("MP"..mpx().."_H4CNF_APPROACH", -1)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_CASH_I", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_CASH_C", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_WEED_I", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_WEED_C", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_COKE_I", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_COKE_C", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_GOLD_I", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_GOLD_C", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_PAINT", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_CASH_V", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_COKE_V", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_GOLD_V", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_PAINT_V", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_WEED_V", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_CASH_I_SCOPED", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_CASH_C_SCOPED", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_WEED_I_SCOPED", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_WEED_C_SCOPED", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_COKE_I_SCOPED", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_COKE_C_SCOPED", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_GOLD_I_SCOPED", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_GOLD_C_SCOPED", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4LOOT_PAINT_SCOPED", 0)
-			-- -- stats.set_int("MP"..mpx().."_H4CNF_TARGET", 5)
-			-- -- stats.set_int("MP"..mpx().."_H4CNF_WEAPONS", 1)
-			-- -- stats.set_int("MP"..mpx().."_H4_MISSIONS", 65283)
-			-- -- stats.set_int("MP"..mpx().."_H4_PROGRESS", 126823)
-			-- -- stats.set_int("MP"..mpx().."_H4_PLAYTHROUGH_STATUS", 5)
-			-- -- globals.set_int(GIO + 29975, 2455000)
-			-- -- function (CUT) end)
+		local hacpsp2=hacpsp:add_action("Normal Panther", function()
+			stats.set_int("MP"..mpx().."_H4CNF_BS_GEN", 122879)
+			stats.set_int("MP"..mpx().."_H4CNF_WEAPONS", 2)
+			stats.set_int("MP"..mpx().."_H4CNF_TARGET", 5)
+			stats.set_int("MP"..mpx().."_H4CNF_BOLTCUT", 4424)
+			stats.set_int("MP"..mpx().."_H4CNF_UNIFORM", 5256)
+			stats.set_int("MP"..mpx().."_H4CNF_GRAPPEL", 5156)
+			stats.set_int("MP"..mpx().."_H4CNF_TROJAN", 3)
+			stats.set_int("MP"..mpx().."_H4LOOT_CASH_I", 0)
+			stats.set_int("MP"..mpx().."_H4LOOT_CASH_I_SCOPED", 0)
+			stats.set_int("MP"..mpx().."_H4LOOT_CASH_C", 0)
+			stats.set_int("MP"..mpx().."_H4LOOT_CASH_C_SCOPED", 0)
+			stats.set_int("MP"..mpx().."_H4LOOT_COKE_I", 0)
+			stats.set_int("MP"..mpx().."_H4LOOT_COKE_I_SCOPED", 0)
+			stats.set_int("MP"..mpx().."_H4LOOT_COKE_C", 0)
+			stats.set_int("MP"..mpx().."_H4LOOT_COKE_C_SCOPED", 0)
+			stats.set_int("MP"..mpx().."_H4LOOT_GOLD_I", 16777215)
+			stats.set_int("MP"..mpx().."_H4LOOT_GOLD_I_SCOPED", 16777215)
+			stats.set_int("MP"..mpx().."_H4LOOT_GOLD_C", 255)
+			stats.set_int("MP"..mpx().."_H4LOOT_GOLD_C_SCOPED", 255)
+			stats.set_int("MP"..mpx().."_H4LOOT_WEED_I", 0)
+			stats.set_int("MP"..mpx().."_H4LOOT_WEED_I_SCOPED", 0)
+			stats.set_int("MP"..mpx().."_H4LOOT_WEED_C", 0)
+			stats.set_int("MP"..mpx().."_H4LOOT_WEED_C_SCOPED", 0)
+			stats.set_int("MP"..mpx().."_H4LOOT_PAINT", 127)
+			stats.set_int("MP"..mpx().."_H4LOOT_PAINT_SCOPED", 127)
+			stats.set_int("MP"..mpx().."_H4LOOT_GOLD_V", 585151)
+			stats.set_int("MP"..mpx().."_H4LOOT_PAINT_V", 438863)
+			stats.set_int("MP"..mpx().."_H4_PROGRESS", 126823)
+			stats.set_int("MP"..mpx().."_H4_MISSIONS", 8191)
+		end)
 		
-			-- -- local function CUT() end)
-				-- -- havent idea im noob, help me		
-		--
+		local hacpspl=hacpsp:add_action("-----", function() end)
+		
+		local hacppoi=hacpsp:add_action("Get All POI", function()
+			stats.set_int("MP"..mpx().."_H4CNF_BS_GEN", -1)
+			stats.set_int("MP"..mpx().."_H4CNF_BS_ENTR", 63)
+			stats.set_int("MP"..mpx().."_H4CNF_APPROACH", -1)
+		end)
 		
 		local hacpsp3=hacpsp:add_action("Reset Heist To Default", function()
 			stats.set_int("MP"..mpx().."_H4_MISSIONS", 0)
@@ -175,7 +174,12 @@ local hs=script("fm_mission_controller_2020")
 		hacphh:add_action("Bypass Plasma Glass Cut", function()
 		if hs:is_active() and hs:get_float(HSCG)>0 and hs:get_float(HSCG)<100 then hs:set_float(HSCG, 100) end end)
 		hacphh:add_action("Remove CCTV", function() menu.remove_cctvs() end)
+		hacphh:add_action("Kill All Mission NPCs", function() menu.kill_all_mission_peds() end)
 		hacphh:add_action("Kill All NPCs", function() menu.kill_all_npcs() end)
+		hacphh:add_action("Auto Finish Primary Target", function()
+		if hs:is_active() then hs:set_int(HSCS, 5) hs:set_int(HSBC, 3) end end)
+		hacphh:add_action("Instant Finish Heist", function()
+		if hs:is_active() then hs:set_int(HSIF1, 51338752) hs:set_int(HSIF2, 50) end end) 
 		
 		hacphh:add_action("  _________________Teleport_________________", function() end)
 			local function TP2L(TPx,TPy,TPz,Yaw,Pitch,Roll)
@@ -194,14 +198,15 @@ local hs=script("fm_mission_controller_2020")
 			hacphh:add_action("Loot Room3", function()
 			TP2L(5009.367676, -5790.344727, 16.531700,-2.891438,0,0) end)
 			hacphh:add_action("Front Gate", function()
-			TP2L(5006.911133, -5721.550293, 18.199459,1.169201,0,0) end)
+			menu.end_cutscene() TP2L(4990.194824, -5716.448730, 18.580215, 0.946360, -0,0) end)
+			hacphh:add_action("Sea Escaped", function()
+			menu.end_cutscene() TP2L(4639.124023, -6010.004883, -7.475036, 1.930023, -0, -0) end)
 		--
 		
+		
 		hacphh:add_action("  _______________Modify Loot_______________", function() end)
-			hacphh:add_action("Auto Finish Primary Target", function()
-			if hs:is_active() then hs:set_int(HSCS, 5) end
-			if hs:is_active() then hs:set_int(HSBC, 3) end end)
-			hacphh:add_int_range("Secondary Take", 100000, 900000, 6662960, function() if hs:is_active() then return hs:get_int(HSST) else return 0 end end, function(RTk)
+			hacphh:add_int_range("Secondary Take", 100000, 900000, 6662960, function()
+			if hs:is_active() then return hs:get_int(HSST) else return 0 end end, function(RTk)
 			if hs:is_active() then hs:set_int(HSST, RTk) end end)
 			local tke=0
 			hacphh:add_array_item("Auto Max Take", { "Safe Hard", "Max Hard", "Safe Easy", "Max Easy" }, function()
@@ -326,7 +331,7 @@ local hs=script("fm_mission_controller_2020")
 	
 		local hadcspg=hadcsp:add_submenu("Standart Preset [Gold]", function() end)
 		
-			local hacpspg1=hadcspg:add_action("The Big Con Approach", function()
+			local hadcspg1=hadcspg:add_action("The Big Con Approach", function()
 				stats.set_int("MP"..mpx().."_H3_COMPLETEDPOSIX", -1)
 				stats.set_int("MP"..mpx().."_H3OPT_APPROACH", 2)
 				stats.set_int("MP"..mpx().."_H3_LAST_APPROACH", 3)
@@ -343,7 +348,7 @@ local hs=script("fm_mission_controller_2020")
 				stats.set_int("MP"..mpx().."_H3OPT_MASKS", 11)
 			end)
 			
-			local hacpspg2=hadcspg:add_action("Aggressive Approach", function()
+			local hadcspg2=hadcspg:add_action("Aggressive Approach", function()
 				stats.set_int("MP"..mpx().."_H3_COMPLETEDPOSIX", -1)
 				stats.set_int("MP"..mpx().."_H3OPT_APPROACH", 3)
 				stats.set_int("MP"..mpx().."_H3_LAST_APPROACH", 2)
@@ -360,7 +365,7 @@ local hs=script("fm_mission_controller_2020")
 				stats.set_int("MP"..mpx().."_H3OPT_MASKS", 11)
 			end)
 			
-			local hacpspg3=hadcspg:add_action("Silent Sneaky Approach", function()
+			local hadcspg3=hadcspg:add_action("Silent Sneaky Approach", function()
 				stats.set_int("MP"..mpx().."_H3_COMPLETEDPOSIX", -1)
 				stats.set_int("MP"..mpx().."_H3OPT_APPROACH", 1)
 				stats.set_int("MP"..mpx().."_H3_LAST_APPROACH", 3)
@@ -380,7 +385,7 @@ local hs=script("fm_mission_controller_2020")
 		
 		local hadcspd=hadcsp:add_submenu("Standart Preset [Diamond]", function() end)
 		
-			local hacpspd1=hadcspd:add_action("The Big Con Approach", function()
+			local hadcspd1=hadcspd:add_action("The Big Con Approach", function()
 				stats.set_int("MP"..mpx().."_H3_COMPLETEDPOSIX", -1)
 				stats.set_int("MP"..mpx().."_H3OPT_APPROACH", 2)
 				stats.set_int("MP"..mpx().."_H3_LAST_APPROACH", 3)
@@ -397,7 +402,7 @@ local hs=script("fm_mission_controller_2020")
 				stats.set_int("MP"..mpx().."_H3OPT_MASKS", 11)
 			end)
 			
-			local hacpspd2=hadcspd:add_action("Aggressive Approach", function()
+			local hadcspd2=hadcspd:add_action("Aggressive Approach", function()
 				stats.set_int("MP"..mpx().."_H3_COMPLETEDPOSIX", -1)
 				stats.set_int("MP"..mpx().."_H3OPT_APPROACH", 3)
 				stats.set_int("MP"..mpx().."_H3_LAST_APPROACH", 1)
@@ -414,7 +419,7 @@ local hs=script("fm_mission_controller_2020")
 				stats.set_int("MP"..mpx().."_H3OPT_MASKS", 11)
 			end)
 			
-			local hacpspd3=hadcspd:add_action("Silent Sneaky Approach", function()
+			local hadcspd3=hadcspd:add_action("Silent Sneaky Approach", function()
 				stats.set_int("MP"..mpx().."_H3_COMPLETEDPOSIX", -1)
 				stats.set_int("MP"..mpx().."_H3OPT_APPROACH", 1)
 				stats.set_int("MP"..mpx().."_H3_LAST_APPROACH", 3)
@@ -432,12 +437,14 @@ local hs=script("fm_mission_controller_2020")
 			end)
 		--
 		
-		-- can someone make a preset work with 100% cut for all members, with add_toggle?
-		-- local hadcsp2=hadcsp:add_action("Quick Preset Aggressive-Gold [1-4P]", function() end)
-			-- havent idea im noob, help me
-		-- --
+		local hadcpl=hadcsp:add_action("-----", function() end)
 		
-		local hadcsp3=hadcsp:add_action("Reset Heist To Default", function()
+		local hadcpoi=hadcsp:add_action("Get All POI", function()
+			stats.set_int("MP"..mpx().."_H3OPT_POI", -1)
+			stats.set_int("MP"..mpx().."_H3OPT_ACCESSPOINTS", -1)
+		end)
+		
+		local hadcr=hadcsp:add_action("Reset Heist To Default", function()
 			stats.set_int("MP"..mpx().."_H3_LAST_APPROACH", 0) 
 			stats.set_int("MP"..mpx().."_H3OPT_APPROACH", 0) 
 			stats.set_int("MP"..mpx().."_H3_HARD_APPROACH", 0) 
@@ -468,13 +475,25 @@ local hs=script("fm_mission_controller_2020")
 		if hs:is_active() and hs:get_int(HS0VT)>=0 or hs:get_int(HS0VT)<=100 then
 		hs:set_int(HS0VS, hs:get_int(HS0VT)) end end)
 		hadchh:add_action("Remove CCTV", function() menu.remove_cctvs() end)
+		hadchh:add_action("Kill All Mission NPCs", function() menu.kill_all_mission_peds() end)
 		hadchh:add_action("Kill All NPCs", function() menu.kill_all_npcs() end)
+		hadchh:add_action("Suicide [for Blackscreen Bug]", function() menu.suicide_player() end)
 		
 		hadchh:add_action("  _________________Teleport_________________", function() end)
 			local function TP2L(TPx,TPy,TPz,Yaw,Pitch,Roll)
 			localplayer:set_rotation(vector3(Yaw,Pitch,Roll)) localplayer:set_position((vector3(TPx, TPy, TPz))) end
-			hadchh:add_action("Double Key Card", function() TP2L(2469.234863,-281.168030,-71.994225, -1.049023,0,0) end)
-			hadchh:add_action("Staff Lobby Entrance", function() TP2L(2547.100098,-269.579987,-60.022987, 3.134611,0,0) end)
+			hadchh:add_action("Double Key Card", function()
+			TP2L(2469.234863,-281.168030,-71.994225, -1.049023,0,0) end)
+			hadchh:add_action("Bonus Room", function()
+			TP2L(2521.906494, -287.172882, -60.022964, 0,0,0) end)
+			hadchh:add_action("Laundry Room", function()
+			TP2L(2536.455078, -300.772522, -60.022968, 0,0,0) end)
+			hadchh:add_action("Staff Lobby Entrance", function()
+			TP2L(2547.100098,-269.579987,-60.022987, 3.134611,0,0) end)
+			hadchh:add_action("Staff Door Exit", function()
+			TP2L(2547.458496, -277.744507, -59.741863, -0.071993, 0.005218, -0.113118) end)
+			hadchh:add_action("Roof Exit", function()
+			TP2L(2522.338379, -248.534760, -25.414972, 0,0,0) end)
 		--
 		
 		hadchh:add_action("  _______________Modify Loot_______________", function()	end)
@@ -647,6 +666,8 @@ local hs=script("fm_mission_controller_2020")
 			stats.set_int("MP"..mpx().."_GANGOPS_FM_MISSION_PROG", -1)  end)	
 		--
 		
+		local hadl=hadsp:add_action("---", function() end)
+		
 		local hadr=hadsp:add_action("Reset Heist To Default", function() 
 			stats.set_int("MP"..mpx().."_GANGOPS_FLOW_MISSION_PROG", 240)  
 			stats.set_int("MP"..mpx().."_GANGOPS_HEIST_STATUS", 0)  
@@ -661,7 +682,10 @@ local hs=script("fm_mission_controller_2020")
 		hadhh:add_action("Bypass Beam Puzzle Hack [ACT III]", function()
 		if hs:is_active() then if hs:get_int(Beam)>-1 and hs:get_int(Beam)<100 then hs:set_int(Beam, 3) end end end)
 		hadhh:add_action("Remove CCTV", function() menu.remove_cctvs() end)
+		hadhh:add_action("Kill All Mission NPCs", function() menu.kill_all_mission_peds() end)
 		hadhh:add_action("Kill All NPCs", function() menu.kill_all_npcs() end)
+		hadhh:add_action("Instant Finish Heist", function()
+		if hs:is_active() then hs:set_int(HSIFD1, 12) hs:set_int(HSIFD2, 99999) hs:set_int(HSIFD3, 1) end end)
 	--
 	
 	local hadm=had:add_submenu("Misc", function() end)
@@ -722,17 +746,19 @@ local hs=script("fm_mission_controller_2020")
 --- Credits. Where's the code come from
 
 	local hac=ha:add_submenu("Credits", function() end)
-		local hac1=hac:add_action("Kiddion", function() end) -- For made kiddion's modest external menu
-		local hac2=hac:add_action("Roy007", function() end) -- Your code is inspiring me (ScriptStash)
-		local hac3=hac:add_action("IceDoomfist", function() end) -- Your code is inspiring me (Stand Heist Control)
-		local hac4=hac:add_action("Beholdmystuff", function() end) -- For make heist stat maker
-		local hac5=hac:add_action("UnknownCheats Community", function() end) -- For sharing knowledge
-		local hac6=hac:add_action("Others", function() end) -- Everyone whos give information
+		hac:add_action("Kiddion", function() end) -- For made kiddion's modest external menu
+		hac:add_action("Roy007", function() end) -- Your code is inspiring me (ScriptStash)
+		hac:add_action("IceDoomfist", function() end) -- Your code is inspiring me (Stand Heist Control)
+		hac:add_action("KilllaB", function() end) -- Your code is inspiring me (Ultimate Controller)
+		hac:add_action("Beholdmystuff", function() end) -- For make heist stat maker
+		hac:add_action("UnknownCheats Community", function() end) -- For sharing knowledge
+		hac:add_action("Others", function() end) -- Everyone whos give information
 	--
 	--[[
 		Kiddion: https://www.unknowncheats.me/forum/members/1861563.html
 		Roy007: https://www.unknowncheats.me/forum/members/4362780.html
 		IceDoomfist: https://github.com/IceDoomfist
+		KilllaB: https://www.unknowncheats.me/forum/members/4376084.html
 		Beholdmystuff: https://github.com/beholdmystuff
 		UnknownCheats Community: https://www.unknowncheats.me/forum/grand-theft-auto-v/
 	]]--
