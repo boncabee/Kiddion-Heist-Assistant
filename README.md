@@ -4,6 +4,9 @@
 Heist Assistant focused helping people to make money with playing easy heist in GTA Online v1.61.
 A Lua Script made for [Kiddion's Modest External Menu](https://www.unknowncheats.me/forum/grand-theft-auto-v/497052-kiddions-modest-external-menu-thread-3-a.html).
 
+## Screenshot
+![Screenshot (208)](https://user-images.githubusercontent.com/73638429/188131515-ccc8f8c1-061a-4000-921f-794b3d9a31be.png)
+
 ## Installation
 Download the script `HeistAssistant.lua` then put into `modest-menu_v0.9.4\scripts\ Here`. After put the script if your Modest Menu already opened you need to reload script by `Menu Settings > Reload Scripts`. All done, go to `Scripts > Heist Assistant` to use the script.
 
