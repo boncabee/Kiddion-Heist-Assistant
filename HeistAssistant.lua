@@ -1,7 +1,7 @@
 --[[
 
 	Heist Assistant v0.3
-	Made by Boncabee: https://github.com/boncabee
+	Made by newbie(me), Boncabee: https://github.com/boncabee
 	Script for Kiddion's Modest External Menu: https://www.unknowncheats.me/forum/grand-theft-auto-v/497052-kiddions-modest-external-menu-thread-3-a.html
 	Thanks to Roy007 for make me interesting with lua, because his code is easy to understand then i can made this script
 	Heist Assistant is based from ScriptStash by Roy007 & inspired from Stand Heist Control by IceDoomfist
