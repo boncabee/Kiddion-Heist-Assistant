@@ -1,6 +1,6 @@
 --[[
 
-	Heist Assistant v0.3
+	Heist Assistant v1.0
 	Made by newbie(me), Boncabee: https://github.com/boncabee
 	Script for Kiddion's Modest External Menu: https://www.unknowncheats.me/forum/grand-theft-auto-v/497052-kiddions-modest-external-menu-thread-3-a.html
 	Thanks to Roy007 for make me interesting with lua, because his code is easy to understand then i can made this script
@@ -14,7 +14,7 @@
 
 --[[ Version
 
-	HA: v0.3
+	HA: v1.0
 	Kiddion's: v0.9.4
 	GTAO: v1.61
 	
@@ -64,7 +64,7 @@ local hs=script("fm_mission_controller_2020")
 local function mpx() return stats.get_int("MPPLY_LAST_MP_CHAR") end
 
 local ha=menu.add_submenu("Heist Assistant")
-ha:add_action("                  Heist Assistant v0.3", function() end)
+ha:add_action("                  Heist Assistant v1.0", function() end)
 
 --- Cayo Perico Heist			
 
