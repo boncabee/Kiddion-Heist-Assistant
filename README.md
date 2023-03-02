@@ -1,23 +1,24 @@
-# Heist Assistant
-Heist Assistant focused helping people to make money with playing easy heist in GTA Online v1.61.
-A Lua Script made for [Kiddion's Modest External Menu](https://www.unknowncheats.me/forum/grand-theft-auto-v/497052-kiddions-modest-external-menu-thread-3-a.html).
+# What Is Heist Assistant
+Heist Assistant is a lua script made for [Kiddion's Modest External Menu](https://www.unknowncheats.me/forum/grand-theft-auto-v/497052-kiddions-modest-external-menu-thread-3-a.html).
 
-## Screenshot
-![Screenshot (208)](https://user-images.githubusercontent.com/73638429/188131515-ccc8f8c1-061a-4000-921f-794b3d9a31be.png)
+Heist Assistant has focused helping people to make money with playing easy heist in GTA Online.
 
-## Installation
-Download the script `HeistAssistant.lua` then put into folder `modest-menu_v0.9.4\scripts\ Here`. After put the script if your Modest Menu already opened you need to reload script by `Menu Settings > Reload Scripts`. All done, go to `Scripts > Heist Assistant` to use the script.
+# Features
+![x](https://github.com/boncabee/Heist-Assistant/blob/main/Images/Screenshot%20(224).png)
+* Cayo Perico Heist - skip setup/prep, helper, Instant finish heist, etc.
+* Diamond Casino Heist - skip setup/prep, helper, etc.
+* Doomsday Heist - skip setup/prep, helper, Instant finish heist, etc.
 
-## Changelog
-Read in [Releases](https://github.com/boncabee/Heist-Assistant/releases)
+## More Screenshot
+![x](https://github.com/boncabee/Heist-Assistant/blob/main/Images/Screenshot%20(223).png)
+![x](https://github.com/boncabee/Heist-Assistant/blob/main/Images/Screenshot%20(222).png)
+![x](https://github.com/boncabee/Heist-Assistant/blob/main/Images/Screenshot%20(221).png)
+
+## Script Installation
+* Download the lua script [Here](https://github.com/boncabee/Heist-Assistant/releases/tag/v0.3)
+* Put the script into folder `modest-menu_v0.9.4\scripts\`
+* Go to `Menu Settings > Reload Scripts`
+* Go to `Scripts > Heist Assistant`
 
 ## Credits
-[Kiddion](https://www.unknowncheats.me/forum/members/1861563.html) for made kiddion's modest external menu.
-
-[Roy007](https://www.unknowncheats.me/forum/members/4362780.html) for make me interesting with lua because his understandable code.
-
-[IceDoomfist](https://github.com/IceDoomfist) for inspired me from his script [Stand Heist Control](https://github.com/IceDoomfist/Stand-Heist-Control).
-
-[Beholdmystuff](https://github.com/beholdmystuff) for make heist stat maker.
-
-[UnknownCheats Community](https://www.unknowncheats.me/forum/grand-theft-auto-v/) for sharing knowledge.
+Thanks to [Kiddion](https://www.unknowncheats.me/forum/members/1861563.html), [Roy007](https://www.unknowncheats.me/forum/members/4362780.html), [IceDoomfist](https://github.com/IceDoomfist), [Beholdmystuff](https://github.com/beholdmystuff), [UnknownCheats Community](https://www.unknowncheats.me/forum/grand-theft-auto-v/).
