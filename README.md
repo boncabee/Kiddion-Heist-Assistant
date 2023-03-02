@@ -15,7 +15,7 @@ Heist Assistant has focused helping people to make money with playing easy heist
 ![x](https://github.com/boncabee/Heist-Assistant/blob/main/Images/Screenshot%20(221).png)
 
 ## Script Installation
-* Download the lua script [Here](https://github.com/boncabee/Heist-Assistant/releases/tag/v0.3)
+* Download the lua script [Here](https://github.com/boncabee/Heist-Assistant/releases/tag/v1.0)
 * Put the script into folder `modest-menu_v0.9.4\scripts\`
 * Go to `Menu Settings > Reload Scripts`
 * Go to `Scripts > Heist Assistant`
