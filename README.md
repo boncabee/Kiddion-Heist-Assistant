@@ -1,4 +1,5 @@
 # What Is Heist Assistant
+### Currently outdated, you can change the offsets by your self.
 Heist Assistant is a lua script made for [Kiddion's Modest External Menu](https://www.unknowncheats.me/forum/grand-theft-auto-v/497052-kiddions-modest-external-menu-thread-3-a.html).
 
 Heist Assistant has focused helping people to make money with playing easy heist in GTA Online.
